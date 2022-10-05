@@ -1,0 +1,41 @@
+"C:\Program Files\JetBrains\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2022.2.1/bin/ninja/win/ninja.exe" -G Ninja -S \\gda-nas\s22990\windows\desktop\NAI\NAI\LAB1 -B \\gda-nas\s22990\windows\desktop\NAI\NAI\LAB1\cmake-build-debug
+-- The C compiler identification is GNU 11.2.0
+-- The CXX compiler identification is GNU 11.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - failed
+-- Check for working C compiler: C:/Program Files/JetBrains/CLion 2022.2.1/bin/mingw/bin/gcc.exe
+-- Check for working C compiler: C:/Program Files/JetBrains/CLion 2022.2.1/bin/mingw/bin/gcc.exe - broken
+CMake Error at C:/Program Files/JetBrains/CLion 2022.2.1/bin/cmake/win/share/cmake-3.23/Modules/CMakeTestCCompiler.cmake:69 (message):
+  The C compiler
+
+    "C:/Program Files/JetBrains/CLion 2022.2.1/bin/mingw/bin/gcc.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: //gda-nas/s22990/windows/desktop/NAI/NAI/LAB1/cmake-build-debug/CMakeFiles/CMakeTmp
+    
+    Run Build Command(s):C:/Program Files/JetBrains/CLion 2022.2.1/bin/ninja/win/ninja.exe cmTC_e33b7 && [1/2] Building C object CMakeFiles/cmTC_e33b7.dir/testCCompiler.c.obj
+    [2/2] Linking C executable cmTC_e33b7.exe
+    FAILED: cmTC_e33b7.exe 
+    cmd.exe /C "cd . && C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe   CMakeFiles/cmTC_e33b7.dir/testCCompiler.c.obj -o cmTC_e33b7.exe -Wl,--out-implib,libcmTC_e33b7.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+    '\\gda-nas\s22990\windows\desktop\NAI\NAI\LAB1\cmake-build-debug\CMakeFiles\CMakeTmp'
+    CMD.EXE was started with the above path as the current directory.
+    UNC paths are not supported.  Defaulting to Windows directory.
+    C:\Program Files\JetBrains\CLion 2022.2.1\bin\mingw\bin/ld.exe: cannot open output file cmTC_e33b7.exe: Permission denied
+    collect2.exe: error: ld returned 1 exit status
+    ninja: build stopped: subcommand failed.
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  CMakeLists.txt:2 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "//gda-nas/s22990/windows/desktop/NAI/NAI/LAB1/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "//gda-nas/s22990/windows/desktop/NAI/NAI/LAB1/cmake-build-debug/CMakeFiles/CMakeError.log".
