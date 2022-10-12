@@ -5,7 +5,7 @@
 #include <vector>
 #include <cmath>
 
-using mojafunkcja_t = std::function<double(double, double)>;
+using mojafunkcja_t = std::function<double(std::vector<double>)>;
 using vector_t = std::vector<std::string>;
 using formatery_t = std::map<std::string,mojafunkcja_t>;
 
@@ -14,13 +14,13 @@ void wypisz(formatery_t fun, vector_t argumenty) {
 
     auto wybranaFunkcja = fun[argumenty.at(1)];
 
-    string a2 = argumenty.at(2);
-    string a3 = argumenty.at(3);
+    vector<double> v;
 
-    double a = stod(a2);
-    double b = stod(a3);
+    for(int i = 2 ; i <  argumenty.size() ; i++){
+        v.push_back(stod(argumenty.at(i)));
+    }
 
-    cout << wybranaFunkcja(a,b);
+    cout << "Wynik: " << wybranaFunkcja(v);
 }
 
 
@@ -30,13 +30,12 @@ int main(int argc, char **argv) {
     map<string,double> mapa;
     formatery_t formatery;
 
-    formatery["add"] = [](double a, double b) {return a+b;};
-    formatery["mod"] = [](double a, double b) {return fmod(a,b);};
-    formatery["sin"] = [](double a, double b) {return sin(a);};
+    formatery["add"] = [](vector<double> v) {return v[0]+v[1];};
+    formatery["mod"] = [](vector<double> v) {return fmod(v[0],v[1]);};
+    formatery["sin"] = [](vector<double> v) {return sin(v[0]);};
 
     try {
         vector<string> argumenty(argv, argv + argc);
-        cout << "Wynik: ";
         wypisz(formatery, argumenty);
     }
     catch (std::out_of_range aor){
