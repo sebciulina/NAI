@@ -43,7 +43,7 @@ domain_t simulated_annealing(const std::function<double(domain_t)> &f, domain_t 
         if(f(tk) <= f(best_p)){
             vector.push_back(best_p);
         } else {
-            if (ukValue < exp(-(abs(f(tk) - f(best_p)) / (1 / log(i))))) {
+            if (ukValue < exp(-(std::abs(f(tk) - f(best_p)) / (1 / log(i))))) {
                 best_p = tk;
                 vector.push_back(best_p);
             }
@@ -54,7 +54,7 @@ domain_t simulated_annealing(const std::function<double(domain_t)> &f, domain_t 
 
 int main() {
 
-    auto sphere_f_v = [](domain_t x) {return x[0]*x[0] + x[1]*x[1];};
+    auto booth_f_v = [](domain_t x) {return pow((x[0]+ 2*x[1] - 7),2) + pow((2*x[0]+x[1]-5),2);};
     auto matayas_f_v = [](domain_t x) { return 0.26 * (x[0] * x[0] + x[1] * x[1]) - (0.48 * x[0] * x[1]); };
     auto beale_f_v = [](domain_t x) {return pow((1.5-x[0]+x[0]*x[1]),2) + pow(2.25-x[0]+x[0]*x[1]*x[1],2) + pow(2.265-x[0]+x[0]*x[1]*x[1]*x[1],2);};
 
@@ -66,25 +66,25 @@ int main() {
         std::uniform_real_distribution<double>distr(-4,4);
         return {{distr(mt_generator), distr(mt_generator)}};
     };
-    std::cout << "----Sphere----" << std::endl;
+    std::cout << "----Booth----" << std::endl;
 
     auto start = std::chrono::high_resolution_clock::now();
-    auto best_sphere_hill = hill_climbing(sphere_f_v, get_random_point(), get_close_points_random,1000000);
+    auto best_booth_hill = hill_climbing(booth_f_v, get_random_point(), get_close_points_random,1000000);
     auto finish = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = finish - start;
-    std::cout << "hill_climbing x = " << best_sphere_hill[0] << " time = " << elapsed.count() << std::endl;
+    std::cout << "hill_climbing x = " << best_booth_hill[0] << " y = " << best_booth_hill[1] << " time = " << elapsed.count() << std::endl;
 
     start = std::chrono::high_resolution_clock::now();
-    auto best_sphere_brute = brute_force_method(sphere_f_v, get_random_point(), 1000000);
+    auto best_booth_brute = brute_force_method(booth_f_v, get_random_point(), 1000000);
     finish = std::chrono::high_resolution_clock::now();
     elapsed = finish - start;
-    std::cout << "brute_force_method x = " << best_sphere_brute[0] << " time = " << elapsed.count() << std::endl;
+    std::cout << "brute_force_method x = " << best_booth_brute[0] << " y = " << best_booth_brute[1] << " time = " << elapsed.count() << std::endl;
 
     start = std::chrono::high_resolution_clock::now();
-    auto best_sphere_annealing = simulated_annealing(sphere_f_v, get_random_point() , 1000000);
+    auto best_booth_annealing = simulated_annealing(booth_f_v, get_random_point() , 1000000);
     finish = std::chrono::high_resolution_clock::now();
     elapsed = finish - start;
-    std::cout << "simulated_annealing x = " << best_sphere_annealing[0] << " time = " << elapsed.count() << std::endl;
+    std::cout << "simulated_annealing x = " << best_booth_annealing[0] << " y = " << best_booth_annealing[1] << " time = " << elapsed.count() << std::endl;
 
     std::cout << "----Matyas----" << std::endl;
 
@@ -92,7 +92,7 @@ int main() {
     auto best_matyas_hill = hill_climbing(matayas_f_v, get_random_point(), get_close_points_random,1000000);
     finish = std::chrono::high_resolution_clock::now();
     elapsed = finish - start;
-    std::cout << "hill_climbing x = " << best_sphere_hill[0] << " y = " << best_matyas_hill[1] << " time = " << elapsed.count() << std::endl;
+    std::cout << "hill_climbing x = " << best_matyas_hill[0] << " y = " << best_matyas_hill[1] << " time = " << elapsed.count() << std::endl;
 
     start = std::chrono::high_resolution_clock::now();
     auto best_matyas_brute = brute_force_method(matayas_f_v, get_random_point(), 1000000);
